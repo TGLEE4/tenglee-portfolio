@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teng Lee | Cloud Engineer</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0a0f1a;
+    --bg2: #0f1623;
+    --bg3: #141e2e;
+    --card: #111827;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.12);
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --cyan: #22d3ee;
+    --cyan2: #0891b2;
+    --green: #4ade80;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', -apple-system, sans-serif; line-height: 1.6; }
+  a { color: inherit; text-decoration: none; }
+
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10,15,26,0.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo { font-size: 1rem; font-weight: 600; letter-spacing: 0.05em; color: var(--cyan); }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { font-size: 0.875rem; color: var(--muted); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    font-size: 0.8rem; font-weight: 500; padding: 0.4rem 1rem;
+    border: 1px solid var(--cyan2); color: var(--cyan);
+    border-radius: 6px; transition: all 0.2s;
+  }
+  .nav-cta:hover { background: rgba(34,211,238,0.08); }
+
+  section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+
+  .hero { padding-top: 8rem; padding-bottom: 5rem; max-width: 1100px; margin: 0 auto; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; color: var(--cyan); letter-spacing: 0.08em; text-transform: uppercase;
+    border: 1px solid rgba(34,211,238,0.25); border-radius: 99px;
+    padding: 0.35rem 1rem; margin-bottom: 1.5rem;
+  }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; line-height: 1.1; margin-bottom: 1.25rem; letter-spacing: -0.02em; }
+  .hero h1 span { color: var(--cyan); }
+  .hero-sub { font-size: 1.1rem; color: var(--muted); max-width: 540px; margin-bottom: 2.5rem; line-height: 1.7; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    padding: 0.75rem 1.75rem; background: var(--cyan); color: #0a0f1a;
+    font-weight: 600; font-size: 0.9rem; border-radius: 8px; transition: all 0.2s;
+  }
+  .btn-primary:hover { background: #67e8f9; }
+  .btn-outline {
+    padding: 0.75rem 1.75rem; border: 1px solid var(--border2); color: var(--text);
+    font-size: 0.9rem; border-radius: 8px; transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.04); }
+  .hero-stats { display: flex; gap: 3rem; margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+  .stat-num { font-size: 1.75rem; font-weight: 700; color: var(--cyan); }
+  .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.15rem; }
+
+  .section-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--cyan); margin-bottom: 0.75rem; }
+  .section-title { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
+  .section-sub { color: var(--muted); max-width: 500px; margin-bottom: 3rem; }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .skill-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.25rem 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .skill-card:hover { border-color: var(--border2); }
+  .skill-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .skill-name { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.25rem; }
+  .skill-desc { font-size: 0.8rem; color: var(--muted); }
+  .skill-level {
+    display: inline-block; margin-top: 0.75rem;
+    font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 99px;
+    letter-spacing: 0.05em; text-transform: uppercase; font-weight: 600;
+  }
+  .level-active { background: rgba(34,211,238,0.1); color: var(--cyan); border: 1px solid rgba(34,211,238,0.2); }
+  .level-learning { background: rgba(251,191,36,0.1); color: #fbbf24; border: 1px solid rgba(251,191,36,0.2); }
+
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; }
+  .project-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .project-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 0.75rem; }
+  .project-num { font-size: 0.7rem; color: var(--cyan); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+  .project-status {
+    font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 99px; font-weight: 600;
+  }
+  .status-live { background: rgba(74,222,128,0.1); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
+  .status-complete { background: rgba(34,211,238,0.1); color: var(--cyan); border: 1px solid rgba(34,211,238,0.2); }
+  .project-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .project-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; flex: 1; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1rem 0; }
+  .tag {
+    font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 6px;
+    background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--border);
+  }
+  .project-links { display: flex; gap: 1rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border); }
+  .project-link { font-size: 0.8rem; color: var(--muted); transition: color 0.2s; display: flex; align-items: center; gap: 0.3rem; }
+  .project-link:hover { color: var(--cyan); }
+
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .about-text p { color: var(--muted); margin-bottom: 1rem; font-size: 0.95rem; line-height: 1.75; }
+  .about-text p strong { color: var(--text); font-weight: 600; }
+  .certs-list { display: flex; flex-direction: column; gap: 0.75rem; }
+  .cert-item {
+    display: flex; align-items: center; gap: 1rem;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 0.875rem 1rem;
+  }
+  .cert-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .cert-dot.pending { background: #fbbf24; }
+  .cert-dot.planned { background: var(--muted); }
+  .cert-name { font-size: 0.85rem; font-weight: 500; }
+  .cert-status { font-size: 0.75rem; color: var(--muted); margin-top: 0.1rem; }
+
+  .contact-wrapper {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 16px; padding: 3rem; text-align: center; max-width: 600px; margin: 0 auto;
+  }
+  .contact-wrapper h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.75rem; }
+  .contact-wrapper p { color: var(--muted); margin-bottom: 2rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .contact-btn {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.5rem; border-radius: 8px; font-size: 0.875rem; font-weight: 500;
+    border: 1px solid var(--border2); transition: all 0.2s;
+  }
+  .contact-btn:hover { border-color: var(--cyan2); color: var(--cyan); background: rgba(34,211,238,0.05); }
+
+  footer {
+    border-top: 1px solid var(--border); padding: 2rem;
+    text-align: center; font-size: 0.8rem; color: var(--muted);
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">TG.DEV</div>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="mailto:tenglee4@gmail.com" class="nav-cta">Get in touch</a>
+</nav>
+
+<div class="hero" style="padding: 8rem 2rem 5rem;">
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    Open to work &mdash; Cloud Infrastructure Engineer
+  </div>
+  <h1>Building cloud<br>infrastructure<br><span>that scales.</span></h1>
+  <p class="hero-sub">CS student deploying real AWS infrastructure with Terraform. Every project is live, open source, and production-grade. Based in Wisconsin.</p>
+  <div class="hero-actions">
+    <a href="#projects" class="btn-primary">View projects</a>
+    <a href="https://github.com/TGLEE4" target="_blank" class="btn-outline">GitHub &rarr;</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">5+</div>
+      <div class="stat-label">AWS projects deployed</div>
+    </div>
+    <div>
+      <div class="stat-num">IaC</div>
+      <div class="stat-label">100% Terraform</div>
+    </div>
+    <div>
+      <div class="stat-num">Live</div>
+      <div class="stat-label">Production infrastructure</div>
+    </div>
+  </div>
+</div>
+
+<section id="skills">
+  <div class="section-label">What I work with</div>
+  <h2 class="section-title">Skills &amp; Technologies</h2>
+  <p class="section-sub">Hands-on experience with AWS cloud services, infrastructure as code, and Linux systems.</p>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">☁️</div>
+      <div class="skill-name">Amazon Web Services</div>
+      <div class="skill-desc">S3, EC2, CloudFront, Route 53, ACM, Lambda, IAM, CloudWatch</div>
+      <span class="skill-level level-active">Active</span>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">⚙️</div>
+      <div class="skill-name">Terraform</div>
+      <div class="skill-desc">Infrastructure as Code — full resource lifecycle, modules, state management</div>
+      <span class="skill-level level-active">Active</span>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🐧</div>
+      <div class="skill-name">Linux</div>
+      <div class="skill-desc">Ubuntu 24.04 LTS, WSL2, Bash scripting, CLI tooling</div>
+      <span class="skill-level level-active">Active</span>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🐙</div>
+      <div class="skill-name">Git &amp; GitHub</div>
+      <div class="skill-desc">Version control, GitHub CLI, repo management, open source workflow</div>
+      <span class="skill-level level-active">Active</span>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🐳</div>
+      <div class="skill-name">Docker</div>
+      <div class="skill-desc">Containerization, Dockerfiles, multi-service applications</div>
+      <span class="skill-level level-learning">Learning</span>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">☸️</div>
+      <div class="skill-name">Kubernetes</div>
+      <div class="skill-desc">Container orchestration, EKS, cluster management</div>
+      <span class="skill-level level-learning">Coming soon</span>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-label">Cloud project roadmap</div>
+  <h2 class="section-title">Projects &amp; Work</h2>
+  <p class="section-sub">Real AWS infrastructure deployed from scratch. All code open source on GitHub.</p>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-num">Project 05</span>
+        <span class="project-status status-live">Live</span>
+      </div>
+      <div class="project-title">Route 53 Custom Domain</div>
+      <div class="project-desc">Migrated personal portfolio to a custom .dev domain using Route 53, CloudFront CDN, ACM SSL certificate, and S3 static hosting — all provisioned with Terraform. Zero downtime deployment.</div>
+      <div class="project-tags">
+        <span class="tag">Route 53</span>
+        <span class="tag">CloudFront</span>
+        <span class="tag">ACM</span>
+        <span class="tag">S3</span>
+        <span class="tag">Terraform</span>
+        <span class="tag">DNS</span>
+      </div>
+      <div class="project-links">
+        <a href="https://tenglee.dev" target="_blank" class="project-link">&#9679; Live site</a>
+        <a href="https://github.com/TGLEE4/resil-project-05-route53" target="_blank" class="project-link">&#9679; GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-num">Project 04</span>
+        <span class="project-status status-complete">Complete</span>
+      </div>
+      <div class="project-title">CloudFront + HTTPS</div>
+      <div class="project-desc">Deployed a CloudFront CDN distribution in front of S3 static hosting with HTTPS enforcement, custom error pages, and Origin Access Control for secure S3 access.</div>
+      <div class="project-tags">
+        <span class="tag">CloudFront</span>
+        <span class="tag">HTTPS</span>
+        <span class="tag">OAC</span>
+        <span class="tag">S3</span>
+        <span class="tag">Terraform</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/TGLEE4/resil-project-04-cloudfront" target="_blank" class="project-link">&#9679; GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-num">Project 03</span>
+        <span class="project-status status-complete">Complete</span>
+      </div>
+      <div class="project-title">EC2 Web Server</div>
+      <div class="project-desc">Provisioned an EC2 Ubuntu instance with Nginx web server, security groups, and SSH key pair — all with Terraform. Queried latest Ubuntu AMI dynamically from Canonical.</div>
+      <div class="project-tags">
+        <span class="tag">EC2</span>
+        <span class="tag">Nginx</span>
+        <span class="tag">Security Groups</span>
+        <span class="tag">SSH</span>
+        <span class="tag">Terraform</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/TGLEE4/resil-project-03-ec2-webserver" target="_blank" class="project-link">&#9679; GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-num">Project 02</span>
+        <span class="project-status status-complete">Complete</span>
+      </div>
+      <div class="project-title">S3 Static Website</div>
+      <div class="project-desc">Deployed a static portfolio site to AWS S3 with public access policies, bucket website configuration, and static hosting — all infrastructure provisioned with Terraform.</div>
+      <div class="project-tags">
+        <span class="tag">S3</span>
+        <span class="tag">Static Hosting</span>
+        <span class="tag">Bucket Policy</span>
+        <span class="tag">Terraform</span>
+        <span class="tag">HTML</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/TGLEE4/resil-project-02-s3-website" target="_blank" class="project-link">&#9679; GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-num">Project 01</span>
+        <span class="project-status status-complete">Complete</span>
+      </div>
+      <div class="project-title">AWS Account Hardening</div>
+      <div class="project-desc">Secured a fresh AWS account with root MFA, IAM admin user with least-privilege policies, Terraform-managed billing alerts, and CloudTrail audit logging.</div>
+      <div class="project-tags">
+        <span class="tag">IAM</span>
+        <span class="tag">MFA</span>
+        <span class="tag">CloudTrail</span>
+        <span class="tag">Billing Alerts</span>
+        <span class="tag">Terraform</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/TGLEE4/resil-project-01-aws-hardening" target="_blank" class="project-link">&#9679; GitHub</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-label">Background</div>
+  <h2 class="section-title">About me</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a <strong>computer science student</strong> and US veteran based in Wisconsin, building hands-on cloud infrastructure skills from the ground up.</p>
+      <p>My focus is on <strong>AWS cloud infrastructure</strong> — deploying real, production-grade systems with Terraform rather than just studying theory. Every project I build is live and open source.</p>
+      <p>I'm actively working toward a <strong>Cloud Infrastructure Engineer</strong> role, with a roadmap covering AWS, Docker, Kubernetes, CI/CD pipelines, and observability tooling.</p>
+      <p>I believe the fastest path to expertise is building real things and documenting every decision along the way.</p>
+    </div>
+    <div>
+      <div style="font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem;">Certification roadmap</div>
+      <div class="certs-list">
+        <div class="cert-item">
+          <div class="cert-dot pending"></div>
+          <div>
+            <div class="cert-name">AWS Cloud Practitioner</div>
+            <div class="cert-status">Target: Q3 2026</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot planned"></div>
+          <div>
+            <div class="cert-name">AWS Solutions Architect Associate</div>
+            <div class="cert-status">Target: Q4 2026</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot planned"></div>
+          <div>
+            <div class="cert-name">Certified Kubernetes Administrator</div>
+            <div class="cert-status">Target: Q1 2027</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot planned"></div>
+          <div>
+            <div class="cert-name">HashiCorp Terraform Associate</div>
+            <div class="cert-status">Target: Q1 2027</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-wrapper">
+    <h2>Let's connect</h2>
+    <p>Open to Cloud Infrastructure Engineer roles. Feel free to reach out on LinkedIn or check out my work on GitHub.</p>
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/teng-lee-709205100/" target="_blank" class="contact-btn">
+        LinkedIn &rarr;
+      </a>
+      <a href="https://github.com/TGLEE4" target="_blank" class="contact-btn">
+        GitHub &rarr;
+      </a>
+      <a href="mailto:tenglee4@gmail.com" class="contact-btn">
+        Email &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Teng Lee &mdash; Wisconsin &mdash; Built on AWS S3 + CloudFront + Route 53 &mdash; Provisioned with Terraform</p>
+</footer>
+
+</body>
+</html>
