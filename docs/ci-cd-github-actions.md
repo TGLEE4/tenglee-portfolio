@@ -4,9 +4,9 @@
 
 This project adds a secure CI/CD deployment pipeline for my live portfolio website:
 
-```text
-https://tenglee.dev
-```
+
+[https://tenglee.dev](https://tenglee.dev)
+
 
 Before this project, portfolio updates were deployed manually by copying `index.html` to Amazon S3 and manually creating a CloudFront invalidation.
 
