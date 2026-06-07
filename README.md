@@ -54,9 +54,9 @@ The live site is served through CloudFront and uses HTTPS.
 
 ## Repository
 
-```text
-https://github.com/TGLEE4/tenglee-portfolio
-```
+
+[TGLee4/tenglee-portfolio](https://github.com/TGLEE4/tenglee-portfolio)
+
 
 ## CI/CD Documentation
 
