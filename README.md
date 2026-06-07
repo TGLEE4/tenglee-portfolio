@@ -66,6 +66,8 @@ This portfolio now includes an automated CI/CD deployment workflow using GitHub 
 
 Detailed documentation:
 
+[Project 10: CI/CD with GitHub Actions, Amazon S3, CloudFront, and OIDC](https://github.com/TGLEE4/tenglee-portfolio/blob/main/docs/ci-cd-github-actions.md)
+
 ```text
 docs/ci-cd-github-actions.md
 ```
