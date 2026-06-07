@@ -59,6 +59,15 @@ The live site is served through CloudFront and uses HTTPS.
 ```text
 https://github.com/TGLEE4/tenglee-portfolio
 ```
+```markdown
+## CI/CD Documentation
+
+This portfolio now includes an automated CI/CD deployment workflow using GitHub Actions, AWS OIDC, Amazon S3, and CloudFront.
+
+Detailed documentation:
+
+```text
+docs/ci-cd-github-actions.md
 
 ## Architecture
 
