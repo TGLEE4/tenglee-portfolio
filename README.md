@@ -68,6 +68,7 @@ Detailed documentation:
 
 ```text
 docs/ci-cd-github-actions.md
+```
 
 ## Architecture
 
