@@ -1,4 +1,4 @@
-<img width="1672" height="941" alt="Project-10-CI CD-Pipeline" src="https://github.com/user-attachments/assets/3d945530-2eb4-4103-b592-4a49ead51e4d" />
+<img width="1672" height="941" alt="Project-10-CI CD-Pipeline" src="https://github.com/user-attachments/assets/44c908a5-eede-4cb8-8034-e411b37cb49e" />
 
 # Project 10: CI/CD with GitHub Actions, Amazon S3, CloudFront, and OIDC
 
