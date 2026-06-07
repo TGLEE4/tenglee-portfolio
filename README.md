@@ -49,7 +49,7 @@ This portfolio supports my goal of becoming a Cloud Infrastructure Engineer.
 ## Live Site
 
 ```text
-[https://tenglee.dev](https://tenglee.dev)
+[tenglee.dev](https://tenglee.dev)
 ```
 
 The live site is served through CloudFront and uses HTTPS.
