@@ -48,7 +48,7 @@ This portfolio supports my goal of becoming a Cloud Infrastructure Engineer.
 
 ## Live Site
 
-```text
+```markdown
 [tenglee.dev](https://tenglee.dev)
 ```
 
