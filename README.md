@@ -66,10 +66,6 @@ Detailed documentation:
 
 [Project 10: CI/CD with GitHub Actions, Amazon S3, CloudFront, and OIDC](https://github.com/TGLEE4/tenglee-portfolio/blob/main/docs/ci-cd-github-actions.md)
 
-```text
-docs/ci-cd-github-actions.md
-```
-
 ## Architecture
 
 ```text
@@ -457,9 +453,7 @@ Possible future improvements include:
 
 This repository contains the source code for my live cloud engineering portfolio at:
 
-```text
-https://tenglee.dev
-```
+[tenglee.dev](https://tenglee.dev)
 
 The site is hosted using AWS S3, delivered through CloudFront, routed with Route 53, and secured with an ACM HTTPS certificate.
 
